@@ -8,12 +8,12 @@ python main.py \
     --exp_id centerfusion \
     --shuffle_train \
     --train_split train \
-    --val_split mini_val \
+    --val_split val \
     --val_intervals 1 \
     --run_dataset_eval \
     --nuscenes_att \
     --velocity \
-    --batch_size 32 \
+    --batch_size 2 \
     --lr 2.5e-4 \
     --num_epochs 60 \
     --lr_step 50 \
@@ -27,7 +27,9 @@ python main.py \
     --pc_z_offset 0.0 \
     --pillar_dims 1.0,0.2,0.2 \
     --max_pc_dist 60.0 \
-    --load_model ../models/centernet_baseline_e170.pth \
+    --load_model ../models/nuScenes_3Ddetection_e140.pth
+    # --load_model ../models/centerfusion_e60.pth \
+    # --partial 0.01 \
     # --freeze_backbone \
     # --resume \
 

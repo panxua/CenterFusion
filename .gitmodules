@@ -9,6 +9,6 @@
 	branch = master
 
 [submodule "src/tools/nuscenes-devkit"]
-	path = src/tools/nuscenes-devkit
-	url = https://github.com/nutonomy/nuscenes-devkit
-	branch = master
+	path = nuscenes-devkit
+	url = https://github.com/panxua/nuscenes-devkit.git
+	branch = main

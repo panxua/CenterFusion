@@ -10,6 +10,7 @@ import os
 from collections import defaultdict
 import time
 
+#from .coco_wrapper import COCO_WRAPPER as COCO
 import pycocotools.coco as coco
 import torch
 import torch.utils.data as data
@@ -82,7 +83,9 @@ class GenericDataset(data.Dataset):
     if ann_path is not None and img_dir is not None:
       print('==> initializing {} data from {}, \n images from {} ...'.format(
         split, ann_path, img_dir))
-      self.coco = coco.COCO(ann_path)
+      
+      ann_root_dir = os.path.join(opt.data_dir, 'nuscenes')
+      self.coco = coco.COCO(ann_path) #COCO(ann_root_dir,split)
       self.images = self.coco.getImgIds()
 
       if opt.tracking:
@@ -217,6 +220,7 @@ class GenericDataset(data.Dataset):
     img_info = coco.loadImgs(ids=[img_id])[0]
     file_name = img_info['file_name']
     img_path = os.path.join(img_dir, file_name)
+    #anns = copy.deepcopy(list(map(coco.load_annotation,img_id)))
     ann_ids = coco.getAnnIds(imgIds=[img_id])
     anns = copy.deepcopy(coco.loadAnns(ids=ann_ids))
     img = cv2.imread(img_path)

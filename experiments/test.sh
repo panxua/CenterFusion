@@ -10,11 +10,12 @@ python test.py ddd \
     --num_workers 4 \
     --nuscenes_att \
     --velocity \
-    --gpus 0 \
+    --gpus 0,1 \
     --pointcloud \
     --radar_sweeps 3 \
     --max_pc_dist 60.0 \
     --pc_z_offset -0.0 \
     --load_model ../models/centerfusion_e60.pth \
+    # --load_model ../exp/ddd/centerfusion/model_last.pth \
     --flip_test \
     # --resume \

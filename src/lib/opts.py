@@ -10,6 +10,7 @@ class opts(object):
   def __init__(self):
     self.parser = argparse.ArgumentParser()
     # basic experiment setting
+    self.parser.add_argument('--partial',default=0,type=float,help='sample partial of original images')
     self.parser.add_argument('task', default='',
                              help='ctdet | ddd | multi_pose '
                              '| tracking or combined with ,')

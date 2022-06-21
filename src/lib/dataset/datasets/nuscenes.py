@@ -6,6 +6,7 @@ from __future__ import print_function
 import pycocotools.coco as coco
 from pycocotools.cocoeval import COCOeval
 from pyquaternion import Quaternion
+import random
 import numpy as np
 import torch
 import json
@@ -48,11 +49,11 @@ class nuScenes(GenericDataset):
     split_names = {
         'mini_train':'mini_train', 
         'mini_val':'mini_val',
-        'train': 'train', 
+        'train': 'train-part', 
         'train_detect': 'train_detect',
         'train_track':'train_track', 
-        'val': 'val',
-        'test': 'test',
+        'val': 'val-part',#'val',
+        'test': 'test',#'test',
         'mini_train_2': 'mini_train_2',
         'trainval': 'trainval',
     }
@@ -76,6 +77,9 @@ class nuScenes(GenericDataset):
     self.alpha_in_degree = False    
     self.num_samples = len(self.images)
 
+    if opt.partial:
+        self.num_samples = int(self.num_samples*opt.partial)
+        self.images = random.sample(self.images,self.num_samples)
     print('Loaded {} {} samples'.format(split, self.num_samples))
 
 
